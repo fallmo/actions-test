@@ -1,0 +1,16 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install dependencies
+COPY package*.json ./
+RUN npm ci --omit=dev || npm install --omit=dev
+
+# Copy source
+COPY . .
+
+EXPOSE 8080
+
+CMD ["npm", "start"]
+
+
