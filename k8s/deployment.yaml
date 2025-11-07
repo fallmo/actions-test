@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-hello
+  labels:
+    app: express-hello
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: express-hello
+  template:
+    metadata:
+      labels:
+        app: express-hello
+    spec:
+      containers:
+        - name: express-hello
+          image: quay.io/mohamedf0/gh-actions-sample
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PORT
+              value: "8080"
+          ports:
+            - name: http
+              containerPort: 8080
+
+
